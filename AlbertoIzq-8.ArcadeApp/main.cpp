@@ -25,6 +25,9 @@ int main(int argc, const char* argv[]) {
 
 	SDL_Surface* noptr_window_surface = SDL_GetWindowSurface(optr_window);
 
+	SDL_PixelFormat* pixel_format = noptr_window_surface->format;
+	std::cout << "The window pixel format is " << SDL_GetPixelFormatName(pixel_format->format);
+
 	uint32_t color = 0XFF0000;
 	setPixel(noptr_window_surface, color, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	SDL_UpdateWindowSurface(optr_window);
