@@ -1,7 +1,11 @@
 #include <iostream>
 
+#pragma warning(push, 0) // Quite the warnings coming from the SDL.h header file
 #include "SDL.h"
+#pragma warning(pop)
 #undef main // To avoid error: external symbol _sdl_main referenced in function _main get cmdline
+
+#include "Color.h"
 
 const int SCREEN_WIDTH = 224; // Pixel sizes for Pac-Man
 const int SCREEN_HEIGHT = 288;
@@ -28,8 +32,11 @@ int main(int argc, const char* argv[]) {
 	SDL_PixelFormat* pixel_format = noptr_window_surface->format;
 	std::cout << "The window pixel format is " << SDL_GetPixelFormatName(pixel_format->format);
 
-	uint32_t color = 0XFF0000;
-	setPixel(noptr_window_surface, color, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	Color::initColorFormat(pixel_format);
+	
+	Color c(255, 255, 0, 255);
+
+	setPixel(noptr_window_surface, c.getPixelColor(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2); // You could use Color::Orange(), instead of c
 	SDL_UpdateWindowSurface(optr_window);
 
 	SDL_Event sdl_event;
