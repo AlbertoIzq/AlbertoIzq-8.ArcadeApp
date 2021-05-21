@@ -24,9 +24,15 @@
     <ClCompile Include="Color.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="ScreenBuffer.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenBuffer.h">
       <Filter>Graphics</Filter>
     </ClInclude>
   </ItemGroup>
