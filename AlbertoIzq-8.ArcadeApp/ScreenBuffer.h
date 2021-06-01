@@ -5,7 +5,8 @@
 #include "SDL.h"
 #include "Color.h"
 
-class ScreenBuffer{
+class ScreenBuffer
+{
 private:
 	SDL_Surface* mSurface;
 

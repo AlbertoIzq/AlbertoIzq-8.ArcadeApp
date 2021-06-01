@@ -3,7 +3,8 @@
 #include  <stdint.h> // More options for integer variables
 #include "SDL.h"
 
-class Color {
+class Color
+{
 private:
 	uint32_t mColor;
 public:

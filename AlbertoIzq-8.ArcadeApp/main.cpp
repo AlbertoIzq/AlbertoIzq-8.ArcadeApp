@@ -6,40 +6,19 @@
 #undef main // To avoid error: external symbol _sdl_main referenced in function _main get cmdline
 
 #include "Color.h"
-#include "ScreenBuffer.h"
+#include "Screen.h"
 
 const int SCREEN_WIDTH = 224; // Pixel sizes for Pac-Man
 const int SCREEN_HEIGHT = 288;
+const int MAGNIFICATION = 2;
 
 int main(int argc, const char* argv[])
 {
-	if (SDL_Init(SDL_INIT_VIDEO))
-	{
-		std::cout << "Error SDL_Init failed" << std::endl;
-		return 1;
-	}
+	Screen screen;
+	screen.init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 
-	// Creates window and does memory allocation
-	SDL_Window* optr_window = SDL_CreateWindow("Arcade", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
-
-	if (optr_window == nullptr)
-	{
-		std::cout << "Could not create the window, got error: " << SDL_GetError() << std::endl;
-		return 1;
-	}
-
-	SDL_Surface* noptr_window_surface = SDL_GetWindowSurface(optr_window);
-
-	SDL_PixelFormat* pixel_format = noptr_window_surface->format;
-
-	Color::initColorFormat(pixel_format);
-	
-	ScreenBuffer screenBuffer;
-	screenBuffer.init(pixel_format->format, noptr_window_surface->w, noptr_window_surface->h);
-	screenBuffer.setPixel(Color::Red(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-	SDL_BlitSurface(screenBuffer.getSurface(), nullptr, noptr_window_surface, nullptr);
-
-	SDL_UpdateWindowSurface(optr_window);
+	screen.draw(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, Color::Yellow());
+	screen.swapScreens();
 
 	SDL_Event sdl_event;
 	bool running = true;
@@ -56,9 +35,6 @@ int main(int argc, const char* argv[])
 			}
 		}
 	}
-
-	SDL_DestroyWindow(optr_window); // Destroys window and frees memory
-	SDL_Quit(); // Cleans the SDL_Init()
 
 	return 0;
 }
