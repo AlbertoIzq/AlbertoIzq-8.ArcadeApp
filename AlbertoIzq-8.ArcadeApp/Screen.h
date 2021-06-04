@@ -5,6 +5,7 @@
 #include "SDL.h"
 #include "ScreenBuffer.h"
 #include "Color.h"
+#include "Line2D.h"
 
 #include "Vec2D.h"
 using namespace Game2DUtils;
@@ -39,5 +40,5 @@ public:
 	// Draw methods
 	void draw(int x, int y, const Color& color);
 	void draw(const Vec2D& point, const Color& color);
-
+	void draw(const Line2D& line, const Color& color);
 };

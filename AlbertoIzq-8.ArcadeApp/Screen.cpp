@@ -1,6 +1,7 @@
 #include "Screen.h"
 
 #include <cassert>
+#include <cmath> // For line drawing
 
 void Screen::clearScreen()
 {
@@ -86,3 +87,60 @@ void Screen::draw(const Vec2D& point, const Color& color)
 	}
 }
 
+void Screen::draw(const Line2D& line, const Color& color)
+{
+	assert(moptrWindow);
+
+	if (moptrWindow)
+	{
+		int dx, dy;
+
+		// We have to round up points because Bresenham's algorithm deals only with integers
+		int x0 = roundf(line.getP0().getX());
+		int y0 = roundf(line.getP0().getY());
+		int x1 = roundf(line.getP1().getX());
+		int y1 = roundf(line.getP1().getY());
+		
+		dx = x1 - x0;
+		dy = y1 - y0;
+
+		signed const char ix((dx > 0) - (dx < 0)); // Evaluates to 1 or -1
+		signed const char iy((dy > 0) - (dy < 0));
+
+		dx = abs(dx) * 2;
+		dy = abs(dy) * 2;
+
+		draw(x0, y0, color); // First point of the line
+
+		if (dx >= dy) // Go along in the x
+		{
+			int d = dy - dx / 2;
+			while (x0 != x1)
+			{
+				if (d >= 0)
+				{
+					d -= dx;
+					y0 += iy;
+				}
+				d += dy;
+				x0 += ix;
+				draw(x0, y0, color);
+			}
+		}
+		else // Go along in the y
+		{
+			int d = dx - dy / 2;
+			while (y0 != y1)
+			{
+				if (d >= 0)
+				{
+					d -= dy;
+					x0 += ix;
+				}
+				d += dx;
+				y0 += iy;
+				draw(x0, y0, color);
+			}
+		}
+	}
+}

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <Vec2D.h>
 
 using namespace Game2DUtils;

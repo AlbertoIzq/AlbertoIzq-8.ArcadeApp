@@ -7,17 +7,22 @@
 
 #include "Color.h"
 #include "Screen.h"
+#include "Line2D.h"
 
 const int SCREEN_WIDTH = 224; // Pixel sizes for Pac-Man
 const int SCREEN_HEIGHT = 288;
-const int MAGNIFICATION = 2;
+const int MAGNIFICATION = 1;
 
 int main(int argc, const char* argv[])
 {
 	Screen screen;
 	screen.init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 
-	screen.draw(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, Color::Yellow());
+	Line2D line = { Vec2D(0, 0), Vec2D(SCREEN_WIDTH, SCREEN_HEIGHT) };
+	screen.draw(line, Color::Red());
+	
+	//screen.draw(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, Color::Yellow());
+	
 	screen.swapScreens();
 
 	SDL_Event sdl_event;

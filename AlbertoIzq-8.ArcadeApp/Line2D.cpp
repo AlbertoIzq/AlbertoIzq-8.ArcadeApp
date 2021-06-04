@@ -1,4 +1,5 @@
 #include "Line2D.h"
+
 #include "Utils.h"
 
 Line2D::Line2D() 
