@@ -16,6 +16,9 @@
     <Filter Include="Graphics">
       <UniqueIdentifier>{ae3e4efe-3df3-40be-9151-af412ac2fe50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shapes">
+      <UniqueIdentifier>{7fa8bccf-3fff-418b-8ca2-fecaa9c791b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -30,6 +33,9 @@
     <ClCompile Include="Screen.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="Line2D.cpp">
+      <Filter>Shapes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h">
@@ -40,6 +46,9 @@
     </ClInclude>
     <ClInclude Include="Screen.h">
       <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Line2D.h">
+      <Filter>Shapes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
